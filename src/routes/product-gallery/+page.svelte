@@ -1,5 +1,14 @@
-<script>
-    const products = [
+<script lang="ts">
+    type Product = {
+        id: number;
+        name: string;
+        price: number;
+        category: string;
+        image: string;
+        description: string;
+    };
+
+    const products: Product[] = [
         { id: 1, name: 'Wireless Headphones', price: 99.99, category: 'Electronics', image: '/products/headset.webp', description: 'Sleek wireless headphones ' },
         { id: 2, name: 'Gaming Mouse', price: 49.99, category: 'Electronics', image: '/products/gaming-mouse.webp', description: 'Ergonomic gaming mouse with RGB lighting and programmable buttons.' },
         { id: 3, name: 'Coffee Maker', price: 79.99, category: 'Appliances', image: '/products/coffee-maker.webp', description: 'Compact coffee maker with a modern design and digital display.' },
@@ -12,10 +21,8 @@
     ];
 </script>
 
-<div class="max-w-7xl flex flex-wrap justify-between m-auto gap-10 my-10 p-10">
-
+<div class="max-w-7xl flex flex-wrap justify-between m-auto gap-10 p-10 bg-white ">
     {#each products.slice(0,3) as product}
-        <!-- Card 4 -->
         <a href="/" class="w-80 flex flex-col text-gray-800 hover:scale-[102%] transition-all shadow-xl">
             <img src={product.image} alt={product.description}>
 
@@ -37,7 +44,6 @@
     {/each}
 
     {#each products.slice(0,3) as product}
-        <!-- Card 1 -->
         <a class="group relative w-80 hover:scale-[102%] transition-all cursor-pointer" href="/">
             <img src={product.image} alt={product.description} class="object-cover rounded-t-md">
 
@@ -53,7 +59,6 @@
     {/each}
 
     {#each products.slice(3,6) as product}
-        <!-- Card 2 -->
         <a class="w-80 h-[425px] border-2 shadow-xl p-6 rounded-xl bg-gray-50 hover:scale-[102%] bg-gradient-to-b from-gray-100 to-white transition-all text-gray-800" href="/">
             <img src={product.image} alt={product.description} class="rounded-xl"/>
 
@@ -66,7 +71,6 @@
     {/each}
 
     {#each products.slice(6,9) as product}
-        <!-- Card 3 -->
         <a class="relative w-80 shadow-xl border-[1px] hover:scale-[102%] transition-all group" href="/">
             <div class="absolute p-4 bg-white/70 backdrop-blur-xl group-hover:opacity-20 transition-all">
                 <div class="flex justify-between">
@@ -78,5 +82,32 @@
 
             <img src={product.image} alt={product.description} class=""/>
         </a>
+    {/each}
+
+</div>
+
+<!-- DarK Mode -->
+<div class="max-w-7xl flex flex-wrap justify-between m-auto gap-10 p-10 bg-neutral-900 ">
+    {#each products.slice(3,6) as product}
+        <!-- Card 5 -->
+        <div class="relative w-80 h-fit p-4 text-white rounded-xl bg-neutral-800 border-[1px] border-gray-700 shadow-lg shadow-purple-500/50 transition-all hover:scale-[101%] hover:shadow-2xl hover:shadow-purple-500/50">
+            <div class="relative">
+                <img src={product.image} alt={product.name} class="rounded"/>
+
+                <button class="absolute bottom-0 left-0 bg-orange-500 px-1 py-[2px] hover:bg-orange-400">
+                    <h3 class="text-xs">{product.category}</h3>
+                </button>
+            </div>
+
+            <div class="mt-2">
+                <h2 class="font-bold text-xl">{product.name}</h2>
+                <p class="font-medium text-sm tracking-wide">${product.price}</p>
+                <h4 class="font-light text-sm mt-1">{product.description}</h4>
+            </div>
+
+            <button class="bg-purple-700 rounded px-2 py-1 mt-6 w-full text-xl font-bold transition-all hover:bg-purple-600">
+                Order Now
+            </button>
+        </div>
     {/each}
 </div>
